@@ -17,12 +17,15 @@
     />
     <link rel="stylesheet" href="./src/styles/globalStyles.css" />
     <link rel="stylesheet" href="./src/styles/index.css" />
+
+    <script src="./src/scripts/modal.js" defer></script>
+    <script src="./src/scripts/index.js" type="module" defer></script>
   </head>
   <body>
     <header class="header__container">
       <div class="header__content">
         <h1 class="header__title"><em>Control</em> Finance</h1>
-        <button class="button button--header" type="button">Registrar novo valor</button>
+        <button class="button button--header" type="button" id="showMessage">Registrar novo valor</button>
       </div>
     </header>
 
@@ -61,8 +64,8 @@
       </section>
     </main>
 
-    <dialog class="modal__controller" open>
-      <div class="modal__container">
+    <dialog class="modal__controller">
+      <form class="modal__container">
         <div class="modal__header">
           <h2 class="modal__title">Registro de valor</h2>
           <button class="modal__close" type="button">X</button>
@@ -70,24 +73,25 @@
         <p class="modal__text">Digite o valor e em seguida aperte no botão referente ao tipo do valor </p>
         <div class="input__container">
           <label for="input" class="input__label">Valor</label>
-          <input class="modal__input" type="number" id="input" placeholder="R$ 00,00">
+          <input class="modal__input" type="text" id="input" placeholder="R$ 00,00">
         </div>
         
         <div class="value-type__container">
           <p class="value-type__text">Tipo de valor</p>
-          <button class="button button--value-type" type="button">Entrada</button>
-          <button class="button button--value-type" type="button">Saída</button>
+          <button class="button button--value-type" type="button" id="entrada" >Entrada</button>
+          <button class="button button--value-type" type="button" id="saida">Saída</button>
         </div>
         <div class="modal-options__container">
           <button class="button button--cancel" type="button">Cancelar</button>
-          <button class="button button--insert" type="button">Inserir valor</button>
+          <button class="button button--insert" type="submit">Inserir valor</button>
         </div>
-      </div>
+      </form>
     </dialog>
 
 
-    <script src="./src/scripts/modal.js"></script>
-    <script src="./src/scripts/valuesData.js"></script>
-    <script src="./src/scripts/index.js"></script>
   </body>
 </html>
+
+<!--<script src="./src/scripts/modal.js"></script>
+    <script src="./src/scripts/valuesData.js"></script>
+    <script src="./src/scripts/index.js"></script>-->
