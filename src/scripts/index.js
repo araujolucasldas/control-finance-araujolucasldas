@@ -29,6 +29,8 @@ function createNewRegister(values){
     buttonElement.addEventListener("click", ()=>{
         const index = insertedValues.indexOf(values)
         insertedValues.splice(index,1)
+        valueSum (insertedValues)
+
         renderElements(insertedValues)
     })
 
@@ -48,27 +50,25 @@ function renderElements(parameter){
     return ulElement
 }
 
-console.log(renderElements(insertedValues))
+renderElements(insertedValues)
 
-function addInputValue(parameter, category){
-    const form = document.querySelector(".modal__container")
-
-    form.addEventListener("submit", (event)=>{
-        event.preventDefault()
-
-        const typeEntrada = document.querySelector("#entrada")
+function addInputValue(parameter){
+    const submitButton = document.querySelector(".button--insert")
+    const typeEntrada = document.querySelector("#entrada")
         const typeSaida = document.querySelector("#saida")
         let inputType 
 
         typeEntrada.addEventListener("click",()=>{
-            inputType = category[0]
-            console.log(category[0])
+            inputType = 0
         })
 
         typeSaida.addEventListener("click",()=>{
-            inputType = category[1]
-            console.log(category[1])
-        })        
+            inputType = 1
+        })   
+
+    submitButton.addEventListener("click", (event)=>{
+        event.preventDefault()
+     
 
         const inputValue = document.querySelector(".modal__input")
         const newValue = {
@@ -78,9 +78,49 @@ function addInputValue(parameter, category){
           }
 
     parameter.push(newValue)
-    console.log(newValue)
+    valueSum (parameter)
     renderElements(parameter)
 
     })
 }
-addInputValue(insertedValues, valuesCategory)
+addInputValue(insertedValues)
+
+function valueSum (insertedValues){
+    const sum = document.querySelector(".sum-area__number")
+
+    const result = insertedValues.reduce((acc, cur) => {
+        return acc + cur.value
+      }, 0);
+
+    sum.innerText = `R$ ${result.toFixed(2)}`
+}
+
+valueSum(insertedValues)
+
+function filterByType (insertedValues){
+    const buttonsContainer = document.querySelector(".filter-area__buttons-container")
+    const buttonEntrada = document.querySelector("#entradas")
+    const buttonSaida = document.querySelector("#saidas")
+    const buttonTodos = document.querySelector("#todos")
+
+    buttonsContainer.addEventListener("click", (event)=>{
+
+        if(event.target == buttonEntrada){
+            const valuesByType = insertedValues.filter((currentValue)=> currentValue.categoryID == 0)
+            renderElements(valuesByType)
+            valueSum(valuesByType)
+
+        }
+        else if(event.target == buttonSaida){
+            const valuesByType = insertedValues.filter((currentValue)=> currentValue.categoryID == 1)
+            renderElements(valuesByType)
+            valueSum(valuesByType)
+
+        }else if(event.target == buttonTodos){
+            const valuesByType = insertedValues
+            renderElements(valuesByType)
+            valueSum(valuesByType)
+        }
+    })
+}
+filterByType(insertedValues)
