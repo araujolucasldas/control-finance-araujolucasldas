@@ -82,6 +82,11 @@ em {
     border: 1.5px solid var(--color-brand-1)
 }
 
+.button--filter-area:focus, .button--value-type:focus {
+    background-color: var(--color-brand-3);
+    border: 1.5px solid var(--color-brand-1)
+}
+
 .sum-area__container {
     background-color: var(--color-grey-5);
     border-radius: var(--radius-1);
