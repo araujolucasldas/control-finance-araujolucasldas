@@ -307,3 +307,12 @@ dialog::backdrop{
         justify-content: center;
     }
 }
+
+@keyframes dropModal {
+    0% {transform: translateY(-300px)}
+    100% {transform: translateY(0);}
+}
+
+.modal__controller {
+    animation: dropModal 0.3s ease-in;
+}
